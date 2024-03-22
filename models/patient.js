@@ -18,3 +18,10 @@ const PatientSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Patient', PatientSchema);
+
+const Patient = require('./models/patient');
+
+app.get('/api/patients', async (req, res) => {
+    const patients = await Patient.find();
+    res.send(patients);
+});

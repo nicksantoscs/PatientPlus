@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 require('dotnev').config();
 
@@ -20,3 +21,7 @@ app.get('/api/patients', async (req, res) => {
     const patients = await Patient.find();
     res.send(patients);
 });
+
+const patientRoutes = require('./routes/patientRoutes');
+// use patientRoutes for any requests that go to /api/patients
+app.use('/api/patients', patientRoutes);
